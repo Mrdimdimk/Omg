@@ -1,0 +1,33 @@
+<?php 
+$I = new AcceptanceTester($scenario);
+$I->wantTo('perform actions and see result');
+$I->amOnPage('/');
+$I->click('.header-sign__reg._action');
+$I->waitForElement('.b-modal__window', 5);
+$I->fillField('#email',  'b.bagind@shire.com');
+$I->fillField('#pass', 'ring');
+$I->click('.auth_button.js-submitBtn');
+$I->dontSee('.b-modal__window');
+$I->see("Фродо",'.header-sign__login');
+$I->click('.header-sign__login');
+$I->click('.header-login__addjob-btn _action');
+$I->click('.b-popup-addwork__select.addwork-category__select_cont',"Категорийная вертикаль");
+$I->click('.addwork-contest__select');
+$I->click('.b-popup-addwork__radio-span',"G4. Товары для дома, семьи, товары для офиса");
+$I->fillField('#name_work',"Митриловая кольчуга");
+$I->fillField('#adv_prod',"Митрил");
+$I->click('.typecompany__radio-span',"Компания рекламодатель");
+$I->fillField('#agency',"Хобиттон");
+$I->fillField('#idea',"Мир во всем мире");
+$I->click('.workseries__radio-span',"Да");
+$I->fillField('#name_series',"Lord of the Rings");
+$I->click('.b-popup-addwork__input-file _action-file-input'); ///
+$I->fillField('.b-popup-addwork__field-video',"youtube.com");
+$I->fillField('.b-popup-addwork__field-www',"http://www.ring.com");
+$I->click('.b-popup-addwork__submit.js-submitBtn',"Отправить работу");
+$I->see("Фродо",'.header-sign__login');
+$I->click('.header-sign__login');
+$I->click('.login-nav__link');
+$I->see("Митриловая кольчуга",'.work__title');
+$I->see("G4. Товары для дома, семьи, товары для офиса",'.work__nomination');
+$I->see("Митрил",'.work__product');
